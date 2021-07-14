@@ -145,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
                     viewPager.setBackgroundColor((Integer)argbEvaluator.evaluate(positionOffset,colors[position],colors[position+1]));
                 }else
                 {
+                    //
                     viewPager.setBackgroundColor(colors[colors.length-1]);
                 }
             }
