@@ -15,11 +15,11 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainPage extends AppCompatActivity {
 
     ViewPager viewPager;
-    Adapter adapter;
-    List<Model> models;
+    ViewPagerAdapter adapter;
+    List<ViewPagerModelClass> models;
     Integer[] colors = null;
     ImageButton setting_btn;
     ImageButton menu_btn;
@@ -28,28 +28,28 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.mainpage);
 
         setting_btn = findViewById(R.id.setting_button);
         setting_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // 버튼 클릭시 팝업 메뉴가 나오게 하기
-                // PopupMenu 는 API 11 레벨부터 제공한다
+
                 PopupMenu popupMenu = new PopupMenu(
                         getApplicationContext(), // 현재 화면의 제어권자
                         v); // anchor : 팝업을 띄울 기준될 위젯
-                getMenuInflater().inflate(R.menu.menu, popupMenu.getMenu());
+                getMenuInflater().inflate(R.menu.setting_menu, popupMenu.getMenu());
                 // 이벤트 처리
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
-                        if (menuItem.getItemId() == R.id.action_menu1) {
-                            Toast.makeText(MainActivity.this, "메뉴 1 클릭", Toast.LENGTH_SHORT).show();
+                        if (menuItem.getItemId() == R.id.action_menu1) {//임시로 토스트 메시지로 띄워서 이벤트 실행확인
+                            Toast.makeText(MainPage.this, "메뉴 1 클릭", Toast.LENGTH_SHORT).show();
                         } else if (menuItem.getItemId() == R.id.action_menu2) {
-                            Toast.makeText(MainActivity.this, "메뉴 2 클릭", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainPage.this, "메뉴 2 클릭", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(MainActivity.this, "메뉴 3 클릭", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainPage.this, "메뉴 3 클릭", Toast.LENGTH_SHORT).show();
                         }
 
                         return false;
@@ -66,21 +66,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // 버튼 클릭시 팝업 메뉴가 나오게 하기
-                // PopupMenu 는 API 11 레벨부터 제공한다
+
                 PopupMenu popupMenu = new PopupMenu(
                         getApplicationContext(), // 현재 화면의 제어권자
-                        v); // anchor : 팝업을 띄울 기준될 위젯
-                getMenuInflater().inflate(R.menu.category, popupMenu.getMenu());
+                        v);
+                getMenuInflater().inflate(R.menu.category_menu, popupMenu.getMenu());
                 // 이벤트 처리
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         if (menuItem.getItemId() == R.id.action_menu1) {
-                            Toast.makeText(MainActivity.this, "메뉴 1 클릭", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainPage.this, "메뉴 1 클릭", Toast.LENGTH_SHORT).show();
                         } else if (menuItem.getItemId() == R.id.action_menu2) {
-                            Toast.makeText(MainActivity.this, "메뉴 2 클릭", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainPage.this, "메뉴 2 클릭", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(MainActivity.this, "메뉴 3 클릭", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainPage.this, "메뉴 3 클릭", Toast.LENGTH_SHORT).show();
                         }
 
                         return false;
@@ -97,10 +97,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // 버튼 클릭시 팝업 메뉴가 나오게 하기
-                // PopupMenu 는 API 11 레벨부터 제공한다
+
                 PopupMenu popupMenu = new PopupMenu(
-                        getApplicationContext(), // 현재 화면의 제어권자
-                        v); // anchor : 팝업을 띄울 기준될 위젯
+                        getApplicationContext(),
+                        v);
                 getMenuInflater().inflate(R.menu.category, popupMenu.getMenu());
                 // 이벤트 처리
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -125,10 +125,10 @@ public class MainActivity extends AppCompatActivity {
          */
 
         models = new ArrayList<>();
-        models.add(new Model(R.drawable.sky, "Sky"));
-        models.add(new Model(R.drawable.sky, "sky2"));
+        models.add(new ViewPagerModelClass(R.drawable.sky, "Sky"));
+        models.add(new ViewPagerModelClass(R.drawable.sky, "sky2"));
 
-        adapter = new Adapter(models, this);
+        adapter = new ViewPagerAdapter(models, this);
 
         viewPager=findViewById(R.id.view_pager);
         viewPager.setAdapter(adapter);

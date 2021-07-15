@@ -8,18 +8,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 
 import java.util.List;
 
-public class Adapter extends PagerAdapter {
+public class ViewPagerAdapter extends PagerAdapter {
 
-    private List<Model> models;
+    private List<ViewPagerModelClass> models;
     private LayoutInflater layoutInflater;
     private Context context;
 
-    public Adapter(List<Model> models, Context context)
+    public ViewPagerAdapter(List<ViewPagerModelClass> models, Context context)
     {
         this.models=models;
         this.context=context;
@@ -39,7 +38,7 @@ public class Adapter extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, int position)
     {
         layoutInflater=LayoutInflater.from(context);
-        View view = layoutInflater.inflate(R.layout.item,container,false);
+        View view = layoutInflater.inflate(R.layout.viewpager_item,container,false);
 
         ImageView imageView;
         TextView title,desc;

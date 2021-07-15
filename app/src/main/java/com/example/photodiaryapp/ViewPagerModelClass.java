@@ -1,12 +1,12 @@
 package com.example.photodiaryapp;
 
-public class Model {
+public class ViewPagerModelClass {
 
     private  int image;
     private String title;
 
 
-    public Model(int image, String title)
+    public ViewPagerModelClass(int image, String title)
     {
         this.image = image;
         this.title = title;
